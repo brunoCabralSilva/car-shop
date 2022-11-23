@@ -37,4 +37,42 @@ export default class Cars {
       seatsQty: modelReturn.seatsQty,
     });
   };
+
+  getAll = async () : Promise<ICar[] | any > => {
+    const modelReturn = await this.model.find();
+    if (modelReturn) {
+      const arrayReturn = modelReturn.map((obj) => {
+        const value = ({
+          id: obj._id,
+          model: obj.model,
+          year: obj.year,
+          color: obj.color,
+          status: obj.status,
+          buyValue: obj.buyValue,
+          doorsQty: obj.doorsQty,
+          seatsQty: obj.seatsQty,
+        });
+        return value;
+      });
+      return arrayReturn;
+    }
+    return modelReturn;
+  };
+
+  getById = async (id: string): Promise<ICar | any> => {
+    const modelReturn = await this.model.findOne({ _id: id }, {});
+    if (modelReturn) {
+      return ({
+        id: modelReturn._id,
+        model: modelReturn.model,
+        year: modelReturn.year,
+        color: modelReturn.color,
+        status: modelReturn.status,
+        buyValue: modelReturn.buyValue,
+        doorsQty: modelReturn.doorsQty,
+        seatsQty: modelReturn.seatsQty,
+      });
+    }
+    return modelReturn;
+  };
 }

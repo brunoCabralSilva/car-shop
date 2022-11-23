@@ -11,4 +11,14 @@ export default class Cars {
     const registerCar = await this.model.register(body);
     return registerCar;
   };
+
+  getAll = async () => {
+    const getAllCars = await this.model.getAll();
+    return getAllCars;
+  };
+
+  getById = async (id: string) => {
+    const getCarById = await this.model.getById(id);
+    return getCarById;
+  };
 }
