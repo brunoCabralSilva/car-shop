@@ -75,4 +75,35 @@ export default class Cars {
     }
     return modelReturn;
   };
+
+  updateCar = async (obj: ICar): Promise<ICar | any> => {
+    const update = await this.model.findByIdAndUpdate(
+      { _id: obj.id },
+      {
+        model: obj.model,
+        year: obj.year,
+        color: obj.color,
+        status: obj.status,
+        buyValue: obj.buyValue,
+        doorsQty: obj.doorsQty,
+        seatsQty: obj.seatsQty,
+      },
+      { new: true },
+    );
+
+    if (update) {
+      const objeto = {
+        id: update._id,
+        model: update.model,
+        year: update.year,
+        color: update.color,
+        status: update.status,
+        buyValue: update.buyValue,
+        doorsQty: update.doorsQty,
+        seatsQty: update.seatsQty,
+      };
+      return objeto;
+    }
+    return update;
+  };
 }

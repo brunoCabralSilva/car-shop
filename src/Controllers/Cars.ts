@@ -28,4 +28,15 @@ export default class Cars {
       return res.status(200).json(getCarById);
     } return res.status(404).json({ message: 'Car not found' });
   };
+
+  public updateCar = async (req: Request, res: Response) : Promise<Response> => {
+    if (req.params.id.length !== 24) {
+      return res.status(422).json({ message: 'Invalid mongo id' });
+    }
+    const obj = { id: req.params.id, ...req.body };
+    const update = await this.service.updateCar(obj);
+    if (update) {
+      return res.status(200).json(update);
+    } return res.status(404).json({ message: 'Car not found' });
+  };
 }

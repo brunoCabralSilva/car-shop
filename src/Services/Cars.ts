@@ -21,4 +21,9 @@ export default class Cars {
     const getCarById = await this.model.getById(id);
     return getCarById;
   };
+
+  updateCar = async (obj: ICar) => {
+    const update = await this.model.updateCar(obj);
+    return update;
+  };
 }
