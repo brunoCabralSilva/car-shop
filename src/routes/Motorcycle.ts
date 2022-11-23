@@ -5,8 +5,8 @@ const router = express.Router();
 const motorController = new MotorcycleController();
 
 router.post('/', motorController.register);
-// router.get('/', carsController.getAll);
-// router.get('/:id', carsController.getById);
-// router.put('/:id', carsController.updateCar);
+router.get('/', motorController.getAll);
+router.get('/:id', motorController.getById);
+router.put('/:id', motorController.updateMotocycle);
 
 export default router;
